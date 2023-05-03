@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--include: incorpora los archivos ejs de la carpeta layouts que son comunes a todas estas ex-html (footer,header,navbar,scripts).-->
+
+    <%- include('layouts/header');-%>
+
+<body>
+
+    
+    <%- include('layouts/navbar');-%>
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Create New Post</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+
+                
+                <form action="/posts/store" method="POST" enctype="multipart/form-data"> <!--el enctype es para decirle al navegador que el formulario contiene multimedia, así lo encrypta antes de enviarlo al server-->
+                <!--esto está en el libro como que va acá -pero cambió con el tiempo, este es el original nuevo: data-sb-form-api-token="API_TOKEN" -el servicio es pago, entre "va el nº de usuario" pero ¿esto será necesario para server e propia compu?- - /// -este es el del libro - action="/post/store" method="POST" /// -este el de greg lim en la carpeta cap 3-8-  <form action="/posts/store" method="POST" enctype="multipart/form-data">  Este es el nº q  me dieron pero sólo hace falta si voy a Internet,no en el localhost: "d8539bc6-744e-4a04-a1fa-314baa3476fb"/// -->
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Title</label>
+                            <input type="text" class="form-control" placeholder="Title" id="title" name="title"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Description</label>
+                            <textarea  id="body" name="body" rows="5" class="form-control"></textarea>
+                            <script>
+                                $('#body').summernote({
+                                    placeholder:'Write here',
+                                    tabsize: 2,
+                                    height:200
+                                });         
+                            </script>
+                        </div>
+                    </div>
+                    <!--Luego de bajar de npm el fileupload insertamos este código para la imgen con el enctype desdpués del POST en el <form>-->
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Image</label>
+                            <input type="file" class="form-control" id="image" name="image"></textarea>
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- Submit Button  -- le borré la parte del nombre de la class que lo ponia con el grupo disable. Ahí funcionó.-->
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+                    </div>
+                </form>
+                
+                </div>
+            </div>
+        </div>
+    </main>
+           
+    <%- include('layouts/footer');-%>
+    <%- include('layouts/scripts');-%>
+</body>
+
+</html>
