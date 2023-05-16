@@ -1,1 +1,7 @@
+#El "#" se usa para comentarios.
+#para borrar algo que anteriormente fue comitado --> git rm -r --cached nombre_de_la_carpeta_q_queremos_borrar_del_commit_anterior.
+#esto es una nueva prueba para git diff.
+#Si te quedás sin cursos en git, apretá la q. 
 node_modules
+git rm -r --cached img
+img

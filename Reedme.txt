@@ -1,1 +1,2 @@
 Este index.js es el del template. Esta carpeta: cleanBlog_template, tiene un nuevo node_module y el nombrado index.js.
+modifico este archivo apropósito para ver que pasa con git. Este archivo ya fue commitado y ahora quiero ver q pasa con su status.
