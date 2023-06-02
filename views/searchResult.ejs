@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--include: incorpora los archivos ejs de la carpeta layouts que son comunes a todas estas ex-html (footer,header,navbar,scripts).-->
+
+<%- include('layouts/header');-%>
+
+    <body>
+
+
+    <%- include('layouts/navbar');-%>
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Search Result</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+
+                
+                <ul>
+                    <% data.result.forEach(result => { %>
+                        <li><%= result.title %></li>
+                    <% }) %>
+                </ul>
+
+                <nav>
+                    <ul class="pagination">
+                        <% for (let i=1; i <=data.totalPages; i++) { %>
+                            <li class="page-item <%= data.currentPage === i ? 'active' : '' %>">
+                                <a class="page-link" href="/search?page=<%= i %>&key=<%= data.key %>">
+                                    <%= i %>
+                                </a>
+                            </li>
+                            <% } %>
+                    </ul>
+                </nav>
+            
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('layouts/footer');-%>
+    <%- include('layouts/scripts');-%>
+</body>
+
+</html>

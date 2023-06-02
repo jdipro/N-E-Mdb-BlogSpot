@@ -4,4 +4,3 @@
 #Si te quedás sin cursos en git, apretá la q. 
 node_modules
 git rm -r --cached img
-img

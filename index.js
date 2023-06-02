@@ -20,6 +20,7 @@ const expressSession = require('express-session');
 const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
 const flash = require('connect-flash');
+//const searchBarMiddleware = require('./middleware/searchBarMiddleware');
 
 
 app.set('view engine', 'ejs');
@@ -37,10 +38,9 @@ app.use(bodyParser.urlencoded({ extended: true })) //bodyParser (no poner ;)
 
 
 app.use(expressSession({
-    secret:'keyboard cat'
-    // ,
-    // resave: false,
-    // saveUninitialized: false
+    secret:'keyboard cat',
+    resave: false,
+    saveUninitialized: false
 }));
 
 global.loggedIn = null; //declaramos var global a loggedIn, será accesible por todos los archivos .ejs (navigation bar)
@@ -56,6 +56,7 @@ app.use(flash());
 
 app.use('/posts/store', validateMiddleware) //debe estar después de app.use(fileUpload()) ya que requerimos del objeto req obtenido de la propiedad file.
 
+//app.use('/views/searchResult', searchBarMiddleware)
 
 
 // Puerto a conectar con la app con Heroku y localhost 4000
@@ -79,7 +80,9 @@ const storeUserController = require('./controllers/storeUser')
 const loginController = require('./controllers/login')
 const loginUserController = require('./controllers/loginUser')
 const logoutController = require('./controllers/logout')
-
+const newAboutController = require('./controllers/newAbout')
+const newContactController = require('./controllers/newContact')
+//const newSearchResultController = require('./controllers/newSearch')
 
 //All Routes: Request handler to call controller -> Codigo de aplicación de las constantes de arriba.
 
@@ -92,6 +95,9 @@ app.post('/users/register',redirectIfAuthenticatedMiddleware, storeUserControlle
 app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController)
 app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController)
 app.get('/auth/logout', logoutController)
+app.get('/about', newAboutController)
+app.get('/contact', newContactController)
+//app.get('/searchResult', searchBarMiddleware)
 
 
 app.use((req, res) => res.render('notfound'));
